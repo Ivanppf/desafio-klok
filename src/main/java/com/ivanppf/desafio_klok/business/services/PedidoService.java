@@ -1,5 +1,14 @@
 package com.ivanppf.desafio_klok.business.services;
 
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.ivanppf.desafio_klok.model.entities.Item;
+import com.ivanppf.desafio_klok.model.entities.Pedido;
+
+@Service
 public class PedidoService {
 
     public void processarPedidos(List<Pedido> pedidos) {
@@ -36,7 +45,8 @@ public class PedidoService {
             if (emEstoque) {
                 enviarNotificacao(pedido.getCliente().getEmail(), "Seu pedido será entregue em breve.");
             } else {
-                enviarNotificacao(pedido.getCliente().getEmail(), "Um ou mais itens do seu pedido estão fora de estoque.");
+                enviarNotificacao(pedido.getCliente().getEmail(),
+                        "Um ou mais itens do seu pedido estão fora de estoque.");
             }
         }
     }
@@ -45,4 +55,3 @@ public class PedidoService {
         System.out.println("Enviando e-mail para " + email + ": " + mensagem);
     }
 }
-
