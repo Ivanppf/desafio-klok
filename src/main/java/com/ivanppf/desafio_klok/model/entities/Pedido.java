@@ -33,6 +33,12 @@ public class Pedido {
     private Boolean emEstoque;
     private LocalDate dataEntrega;
 
+    
+
+    public Pedido(Cliente cliente, List<Item> items) {
+        this.cliente = cliente;
+        this.items = items;
+    }
     public Pedido(Cliente cliente, List<Item> items, Double total, Double totalComDesconto, Boolean emEstoque,
             LocalDate dataEntrega) {
         this.cliente = cliente;
