@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 
 @Entity
 @Table(name = "TB_CIENTE")
@@ -20,6 +21,7 @@ public class Cliente {
     @Column(nullable = false)
     private String nome;
     @Column(nullable = false)
+    @Email
     private String email;
     private TipoCliente tipo;;
 

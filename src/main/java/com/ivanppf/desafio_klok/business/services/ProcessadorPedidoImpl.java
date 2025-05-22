@@ -13,14 +13,14 @@ public class ProcessadorPedidoImpl implements ProcessadorPedido {
     private final ValidadorEstoque validadorEstoque;
     private final Notificador notificador;
 
-    public ProcessadorPedidoImpl(CalculadorPreco calculadorPreco, ValidadorEstoque estoqueValidator, Notificador notificador) {
+    public ProcessadorPedidoImpl(CalculadorPreco calculadorPreco, ValidadorEstoque validadorEstoque, Notificador notificador) {
         this.calculadorPreco = calculadorPreco;
-        this.validadorEstoque = estoqueValidator;
+        this.validadorEstoque = validadorEstoque;
         this.notificador = notificador;
     }
 
     @Override
-    public Pedido processar(Pedido pedido) {
+    public Pedido processar(Pedido pedido) { //lançar exceção se o pedido for nulo ou não tiver estoque
         double total = calculadorPreco.calcularTotal(pedido);
         double totalComDesconto = calculadorPreco.aplicarDesconto(total, pedido.getCliente());
 

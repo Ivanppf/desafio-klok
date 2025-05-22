@@ -12,7 +12,7 @@ public class CalculadorPreco {
     public double calcularTotal(Pedido pedido) {
         double total = 0;
 
-        for (Item item : pedido.getItems()) {
+        for (Item item : pedido.getItens()) {
             total += item.getPreco() * item.getQuantidade();
         }
 
@@ -20,7 +20,7 @@ public class CalculadorPreco {
     }
 
     public double aplicarDesconto(double total, Cliente cliente) {
-            return total * (100 - cliente.getTipo().getValor()) / 100;
+        return total * (100 - cliente.getTipo().getValor()) / 100;
     }
 
 }

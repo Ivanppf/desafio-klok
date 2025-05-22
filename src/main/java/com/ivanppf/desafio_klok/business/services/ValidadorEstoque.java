@@ -8,7 +8,7 @@ import com.ivanppf.desafio_klok.model.entities.Pedido;
 public class ValidadorEstoque {
 
     public boolean estaEmEstoque(Pedido pedido) {
-        for (var item : pedido.getItems()) {
+        for (var item : pedido.getItens()) {
             if (item.getQuantidade() > item.getEstoque()) {
                 return false;
             }
