@@ -43,3 +43,8 @@ Este projeto é uma solução para o **Desafio Klok**, que consiste em refatorar
 ---
 
 Sinta-se à vontade para sugerir melhorias ou abrir issues!
+
+## Cobertura de testes
+
+![cobertura componentes pedido service](imagens\screenshot2.png)
+![cobertura pedido service](imagens\screenshot1.png)
