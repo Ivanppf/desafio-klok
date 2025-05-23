@@ -1,9 +1,9 @@
-package com.ivanppf.desafio_klok.business.services;
+package com.ivanppf.desafio_klok.business.services.Pedido;
 
 import org.springframework.stereotype.Component;
 
 import com.ivanppf.desafio_klok.model.entities.Cliente;
-import com.ivanppf.desafio_klok.model.entities.Item;
+import com.ivanppf.desafio_klok.model.entities.ItemPedido;
 import com.ivanppf.desafio_klok.model.entities.Pedido;
 
 @Component
@@ -13,8 +13,8 @@ public class CalculadorPrecoImpl implements CalculadorPreco {
     public double calcularTotal(Pedido pedido) {
         double total = 0;
 
-        for (Item item : pedido.getItens()) {
-            total += item.getPreco() * item.getQuantidade();
+        for (ItemPedido item : pedido.getItens()) {
+            total += item.getItem().getPreco() * item.getQuantidade();
         }
 
         return total;

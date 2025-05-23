@@ -1,4 +1,4 @@
-package com.ivanppf.desafio_klok.business.services;
+package com.ivanppf.desafio_klok.business.services.Pedido;
 
 import com.ivanppf.desafio_klok.model.entities.Pedido;
 

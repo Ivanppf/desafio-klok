@@ -4,12 +4,16 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -19,24 +23,26 @@ import jakarta.persistence.Table;
 public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "PEDIDO_ID")
     private UUID id;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "CLIENTE_ID", nullable = false)
     private Cliente cliente;
-    @JoinColumn(name = "ITEM_ID", nullable = false)
-    @OneToMany
-    private List<Item> itens;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido")
+    private List<ItemPedido> itens;
     private Double total;
     private Double totalComDesconto;
     private Boolean emEstoque;
     private LocalDate dataEntrega;
 
-    public Pedido(Cliente cliente, List<Item> itens) {
-        this.cliente = cliente;
-        this.itens = itens;
+    public Pedido() {
     }
 
-    public Pedido(Cliente cliente, List<Item> itens, Double total, Double totalComDesconto, Boolean emEstoque,
+    public Pedido(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Pedido(Cliente cliente, List<ItemPedido> itens, Double total, Double totalComDesconto, Boolean emEstoque,
             LocalDate dataEntrega) {
         this.cliente = cliente;
         this.itens = itens;
@@ -46,8 +52,6 @@ public class Pedido {
         this.dataEntrega = dataEntrega;
     }
 
-    
-
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -56,6 +60,9 @@ public class Pedido {
         result = prime * result + ((cliente == null) ? 0 : cliente.hashCode());
         result = prime * result + ((itens == null) ? 0 : itens.hashCode());
         result = prime * result + ((total == null) ? 0 : total.hashCode());
+        result = prime * result + ((totalComDesconto == null) ? 0 : totalComDesconto.hashCode());
+        result = prime * result + ((emEstoque == null) ? 0 : emEstoque.hashCode());
+        result = prime * result + ((dataEntrega == null) ? 0 : dataEntrega.hashCode());
         return result;
     }
 
@@ -88,6 +95,21 @@ public class Pedido {
                 return false;
         } else if (!total.equals(other.total))
             return false;
+        if (totalComDesconto == null) {
+            if (other.totalComDesconto != null)
+                return false;
+        } else if (!totalComDesconto.equals(other.totalComDesconto))
+            return false;
+        if (emEstoque == null) {
+            if (other.emEstoque != null)
+                return false;
+        } else if (!emEstoque.equals(other.emEstoque))
+            return false;
+        if (dataEntrega == null) {
+            if (other.dataEntrega != null)
+                return false;
+        } else if (!dataEntrega.equals(other.dataEntrega))
+            return false;
         return true;
     }
 
@@ -107,11 +129,11 @@ public class Pedido {
         this.cliente = cliente;
     }
 
-    public List<Item> getItens() {
+    public List<ItemPedido> getItens() {
         return itens;
     }
 
-    public void setItens(List<Item> itens) {
+    public void setItens(List<ItemPedido> itens) {
         this.itens = itens;
     }
 
@@ -153,7 +175,5 @@ public class Pedido {
                 + ", totalComDesconto=" + totalComDesconto + ", emEstoque=" + emEstoque + ", dataEntrega=" + dataEntrega
                 + "]";
     }
-
-    
 
 }
