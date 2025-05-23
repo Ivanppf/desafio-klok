@@ -1,6 +1,7 @@
 # Desafio Klok
 
 Este projeto é uma solução para o **Desafio Klok**, que consiste em refatorar e otimizar o serviço de Pedido, visando melhorar sua legibilidade, manutenção e eficiência, além de garantir uma lógica de negócios clara e bem organizada.
+Há um vídeo de demonstração no postman dentro da pasta videos
 
 ## O que foi feito
 
